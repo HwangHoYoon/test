@@ -23,7 +23,7 @@ stages:          # List of stages for jobs, and their order of execution
   - deploy
 
 build-job:       # This job runs in the build stage, which runs first.
-  image: openjdk:17.0.1-oraclelinux8
+  image: openjdk:17-jdk
   stage: build
   script:
     - ./gradlew clean
@@ -34,7 +34,7 @@ build-job:       # This job runs in the build stage, which runs first.
     expire_in: 10 min
 
 unit-test-job:   # This job runs in the test stage.
-  image: openjdk:17.0.1-oraclelinux8
+  image: openjdk:17-jdk
   stage: test    # It only starts when the job in the build stage completes successfully.
   script:
     - ./gradlew test
