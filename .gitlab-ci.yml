@@ -39,32 +39,39 @@ unit-test-job:   # This job runs in the test stage.
   script:
     - ./gradlew test
 
+variables:
+  IMAGE_NAME: $CI_REGISTRY_IMAGE:latest
+
 package-job:
   image: docker:latest
   stage: package
-  variables:
-    IMAGE_NAME: A/B
   services:
     - docker:dind
   before_script:
-    - docker login -u $DOCKER_HUB_USER --password-stdin < $DOCKER_HUB_PW
+    #- docker login -u $DOCKER_HUB_USER --password-stdin < $DOCKER_HUB_PW
+    - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PW
   script:
     - docker build -t $IMAGE_NAME
     - docker push $IMAGE_NAME
   after_script:
     - docker logout
+  only:
+    - master
 
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
-  tags:
-    - A-WAS-1
+  tags: # gitlab-Runner TAG
+    - 16_6_BE_TAG
   before_script:
-    - docker login -u $DOCKER_HUB_USER --password-stdin < $DOCKER_HUB_PW
+    - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PW
   script:
     - docker stop A || true
-    - docker rm A || true
-    - docker rmi A/B || true
-    - docker run -d --restart always -p 8080:8080/tcp --name A A/B
+    - docker rm -f be-con || true
+    - docker rmi $IMAGE_NAME || true
+    #- docker run -d --restart always -p 8080:8080/tcp --name A A/B
+    - docker pull $IMAGE_NAME
+    - docker run --name be-con -p 8080:8080 -d $IMAGE_NAME
+
   after_script:
     - docker logout
   when: on_success
