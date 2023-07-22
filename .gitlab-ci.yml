@@ -67,7 +67,7 @@ deploy-job:      # This job runs in the deploy stage.
   before_script:
     - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PW
   script:
-    - docker stop A || true
+    - docker stop be-con || true
     - docker rm -f be-con || true
     - docker rmi $IMAGE_NAME || true
     #- docker run -d --restart always -p 8080:8080/tcp --name A A/B
