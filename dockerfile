@@ -1,5 +1,4 @@
 FROM openjdk:17-jdk
-RUN microdnf install findutils
 ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} 16_6_BE-0.0.1-SNAPSHOT.jar
 ENTRYPOINT ["java","-jar","/16_6_BE-0.0.1-SNAPSHOT.jar"]
