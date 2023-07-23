@@ -49,9 +49,9 @@ package-job:
   services:
     - docker:dind
   before_script:
-    - docker login -u hoyoon -p sks897867!
+    - docker login -u hoyoon -p dckr_pat_VbrziuD3iT_0tnPLr0MOR1F8wv8
   script:
-    - docker build -t 16_6_BE
+    - docker build -t 16_6_BE .
     - docker push 16_6_BE
   after_script:
     - docker logout
