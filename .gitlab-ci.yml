@@ -51,8 +51,8 @@ package-job:
   before_script:
     - docker login -u hoyoon -p dckr_pat_VbrziuD3iT_0tnPLr0MOR1F8wv8
   script:
-    - docker build -t 16_6_be .
-    - docker push 16_6_be
+    - docker build -t hoyoon/jagiyadocker .
+    - docker push hoyoon/jagiyadocker
   after_script:
     - docker logout
   only:
@@ -67,10 +67,10 @@ deploy-job:      # This job runs in the deploy stage.
   script:
     - docker stop be-con || true
     - docker rm -f be-con || true
-    - docker rmi 16_6_BE || true
+    - docker rmi hoyoon/jagiyadocker || true
     #- docker run -d --restart always -p 8080:8080/tcp --name A A/B
-    - docker pull 16_6_be
-    - docker run --name be-con -p 8080:8080 -d 16_6_be
+    - docker pull hoyoon/jagiyadocker
+    - docker run --name be-con -p 8080:8080 -d hoyoon/jagiyadocker
 
   after_script:
     - docker logout
