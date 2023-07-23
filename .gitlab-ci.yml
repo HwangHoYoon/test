@@ -68,7 +68,6 @@ deploy-job:      # This job runs in the deploy stage.
     - docker stop be-con || true
     - docker rm -f be-con || true
     - docker rmi hoyoon/jagiyadocker || true
-    #- docker run -d --restart always -p 8080:8080/tcp --name A A/B
     - docker pull hoyoon/jagiyadocker
     - docker run --name be-con -p 8080:8080 -d hoyoon/jagiyadocker
 
