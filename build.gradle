@@ -39,8 +39,6 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
-	// 임시DB
-	runtimeOnly 'com.h2database:h2'
 	// DB
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 

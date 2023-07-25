@@ -1,23 +1,19 @@
 
 spring:
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-data:
-  web:
-    pageable:
-      one-indexed-parameters: true
-      default-page-size: 5
-jpa:
-  defer-datasource-initialization: true
-  show-sql: true
-  properties:
-    hibernate:
-      format_sql: true
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+        default-page-size: 5
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 
-datasource:
-  url: jdbc:h2:mem:hhy;NON_KEYWORDS=USER
-  username: sa
-  password:
-  driver-class-name: org.h2.Driver
+  datasource:
+    url: jdbc:mariadb://192.168.219.104:3306/DEV
+    username: DEV_USER
+    password: DEV_USER
+    driver-class-name: org.mariadb.jdbc.Driver
