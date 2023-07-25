@@ -67,9 +67,9 @@ deploy-job:      # This job runs in the deploy stage.
   script:
     - docker stop be-con || true
     - docker rm -f be-con || true
-    - docker rmi hoyoon/jagiyadocker || true
+    - docker rmi $(docker images -f "dangling=true" -q) || true
     - docker pull hoyoon/jagiyadocker
-    - docker run --name be-con -p 8080:8080 -d hoyoon/jagiyadocker
+    - docker run --name be-con -p 8080:8080 -d hoyoon/jagiyadocker:latest
 
   after_script:
     - docker logout
