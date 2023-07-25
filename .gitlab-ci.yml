@@ -49,7 +49,7 @@ package-job:
   services:
     - docker:dind
   before_script:
-    - docker login -u hoyoon -p dckr_pat_VbrziuD3iT_0tnPLr0MOR1F8wv8
+    - docker login -u hoyoon -p glpat-5477mEamXtzjPia1NCTs
   script:
     - docker build -t hoyoon/jagiyadocker .
     - docker push hoyoon/jagiyadocker
@@ -63,7 +63,7 @@ deploy-job:      # This job runs in the deploy stage.
   tags: # gitlab-Runner TAG
     - 16_6_BE_TAG
   before_script:
-    - docker login -u hoyoon -p dckr_pat_VbrziuD3iT_0tnPLr0MOR1F8wv8
+    - docker login -u hoyoon -p glpat-5477mEamXtzjPia1NCTs
   script:
     - docker stop be-con || true
     - docker rm -f be-con || true
