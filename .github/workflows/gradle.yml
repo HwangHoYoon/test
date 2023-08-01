@@ -42,9 +42,10 @@ jobs:
     - name: Deploy
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.HOST }} # EC2 인스턴스 퍼블릭 DNS
-        username: ec2-user
-        key: ${{ secrets.PRIVATE_KEY }} # pem 키
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
         # 도커 작업
         script: |
           docker stop be-con || true
