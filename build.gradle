@@ -41,6 +41,7 @@ dependencies {
 
 	// DB
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	runtimeOnly 'com.mysql:mysql-connector-j'
 
 	// quertDsl
 	implementation 'com.querydsl:querydsl-core:5.0.0'
