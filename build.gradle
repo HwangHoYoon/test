@@ -40,7 +40,6 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	// DB
-	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 
 	// quertDsl
