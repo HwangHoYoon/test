@@ -49,17 +49,8 @@ jobs:
         timeout: 40s
         # 도커 작업
         script: |
-          echo "Container Stop . . ."
           docker stop be-con || true
-          
-          echo "Container Remove . . ."
           docker rm -f be-con || true
-          
-          echo "Image Remove . . ."
           docker rmi $(docker images -f "dangling=true" -q) || true
-          
-          echo "Image Download  . . ."
           docker pull ${{ secrets.DOCKER_REPO }}/jagiyadocker:latest
-          
-          echo "Container Start   . . ."
           docker run --name be-con -p 8080:8080 -d ${{ secrets.DOCKER_REPO }}/jagiyadocker:latest
